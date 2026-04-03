@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CannaTrace</string>
+    <string name="app_tagline">Medical Cannabis Traceability</string>
+
+    <string name="login_title">Login</string>
+    <string name="email_label">Email address</string>
+    <string name="password_label">Password</string>
+    <string name="login_button">Sign in</string>
+    <string name="biometric_button">Biometric login</string>
+    <string name="login_error_empty_email">Email address is required.</string>
+    <string name="login_error_invalid_email">Invalid email format.</string>
+    <string name="login_error_empty_password">Password is required.</string>
+    <string name="login_error_credentials">Invalid credentials.</string>
+    <string name="legal_disclaimer">Application reserved for authorized professionals.\nCompliant with ANSM requirements for medical cannabis.</string>
+
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_batches">Batches</string>
+    <string name="nav_stock">Stock</string>
+    <string name="nav_scanner">Scanner</string>
+    <string name="nav_reports">Reports</string>
+
+    <string name="batch_list_title">Batches</string>
+    <string name="batch_detail_title">Batch Detail</string>
+    <string name="create_batch_title">Create Batch</string>
+    <string name="batch_number_label">Batch number</string>
+    <string name="strain_name_label">Strain name</string>
+    <string name="weight_label">Weight (g)</string>
+    <string name="thc_label">THC (%)</string>
+    <string name="cbd_label">CBD (%)</string>
+    <string name="location_label">Location</string>
+    <string name="notes_label">Notes</string>
+    <string name="create_batch_button">Create batch</string>
+    <string name="batch_closed_badge">CLOSED BATCH</string>
+    <string name="add_correction_note">Add correction note</string>
+    <string name="change_status">Change status</string>
+
+    <string name="status_graine">Seed</string>
+    <string name="status_germination">Germination</string>
+    <string name="status_croissance">Growth</string>
+    <string name="status_recolte">Harvest</string>
+    <string name="status_sechage">Drying</string>
+    <string name="status_transformation">Processing</string>
+    <string name="status_conditionnement">Packaging</string>
+    <string name="status_controle_qualite">Quality Control</string>
+    <string name="status_stockage">Storage</string>
+    <string name="status_dispensation">Dispensation</string>
+    <string name="status_detruit">Destroyed</string>
+    <string name="status_cloture">Closed</string>
+
+    <string name="role_producteur">Producer</string>
+    <string name="role_transformateur">Transformer</string>
+    <string name="role_dispensaire">Dispensary</string>
+    <string name="role_prescripteur">Prescriber</string>
+    <string name="role_patient">Patient</string>
+    <string name="role_inspecteur_ansm">ANSM Inspector</string>
+
+    <string name="culture_journal_title">Culture Journal</string>
+    <string name="culture_type_arrosage">Watering</string>
+    <string name="culture_type_nutriments">Nutrients</string>
+    <string name="culture_type_temperature">Temperature</string>
+    <string name="culture_type_humidite">Humidity</string>
+    <string name="culture_type_lumiere">Light</string>
+    <string name="culture_type_observation">Observation</string>
+    <string name="culture_type_traitement">Treatment</string>
+
+    <string name="stock_title">Stock Management</string>
+    <string name="add_movement">Add movement</string>
+    <string name="movement_entree">Entry</string>
+    <string name="movement_sortie_dispensation">Exit - Dispensation</string>
+    <string name="movement_sortie_destruction">Exit - Destruction</string>
+    <string name="movement_sortie_perte">Exit - Loss</string>
+    <string name="movement_retour">Return</string>
+    <string name="low_stock_warning">batches below minimum threshold</string>
+    <string name="divergence_warning">stock divergence(s) to report</string>
+
+    <string name="scanner_title">Scan QR Code</string>
+    <string name="scanner_instructions">Point the camera at a batch or plant QR code</string>
+    <string name="camera_permission_required">Camera permission required to scan QR codes.</string>
+    <string name="allow_camera">Allow camera</string>
+
+    <string name="reports_title">Reports &amp; Exports</string>
+    <string name="report_inventory">Batch Inventory</string>
+    <string name="report_audit">Full Audit Trail</string>
+    <string name="report_stock">Stock Movements</string>
+    <string name="export_pdf">PDF</string>
+    <string name="export_csv">CSV</string>
+    <string name="verify_chain">Verify integrity</string>
+    <string name="chain_valid">Hash chain valid — no tampering detected.</string>
+    <string name="chain_invalid">ALERT: Inconsistency detected in the audit chain!</string>
+
+    <string name="dashboard_title">Dashboard</string>
+    <string name="kpi_active_batches">Active batches</string>
+    <string name="kpi_in_stock">In stock</string>
+    <string name="kpi_expiring">Expiring soon</string>
+    <string name="kpi_low_stock">Low stock</string>
+
+    <string name="error_generic">An error occurred. Please try again.</string>
+    <string name="error_network">Connection error. Check your network.</string>
+    <string name="error_not_found">Element not found.</string>
+    <string name="error_closed_batch">Batch is closed. Only correction notes are allowed.</string>
+    <string name="error_invalid_transition">Invalid state transition.</string>
+    <string name="error_destroy_reason_required">A reason is required to destroy a batch.</string>
+
+    <string name="rgpd_anonymization_notice">In compliance with GDPR, patient data is automatically anonymized 2 years after the last dispensation.</string>
+    <string name="rgpd_data_retention">Retention period: maximum 2 years after last dispensation</string>
+
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="back">Back</string>
+    <string name="refresh">Refresh</string>
+    <string name="search_hint">Search batches...</string>
+    <string name="all_filter">All</string>
+</resources>

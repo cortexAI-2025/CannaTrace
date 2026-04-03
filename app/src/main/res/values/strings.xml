@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Nom de l'application -->
+    <string name="app_name">CannaTrace</string>
+    <string name="app_tagline">Traçabilité Cannabis Médical</string>
+
+    <!-- Authentification -->
+    <string name="login_title">Connexion</string>
+    <string name="email_label">Adresse email</string>
+    <string name="password_label">Mot de passe</string>
+    <string name="login_button">Se connecter</string>
+    <string name="biometric_button">Connexion biométrique</string>
+    <string name="login_error_empty_email">L\'adresse email est obligatoire.</string>
+    <string name="login_error_invalid_email">Format d\'email invalide.</string>
+    <string name="login_error_empty_password">Le mot de passe est obligatoire.</string>
+    <string name="login_error_credentials">Identifiants invalides.</string>
+    <string name="legal_disclaimer">Application réservée aux professionnels habilités.\nConforme aux exigences ANSM pour le cannabis thérapeutique.</string>
+
+    <!-- Navigation -->
+    <string name="nav_dashboard">Tableau de bord</string>
+    <string name="nav_batches">Lots</string>
+    <string name="nav_stock">Stock</string>
+    <string name="nav_scanner">Scanner</string>
+    <string name="nav_reports">Rapports</string>
+
+    <!-- Lots (Batches) -->
+    <string name="batch_list_title">Lots</string>
+    <string name="batch_detail_title">Détail du lot</string>
+    <string name="create_batch_title">Créer un lot</string>
+    <string name="batch_number_label">Numéro de lot</string>
+    <string name="strain_name_label">Nom de la souche</string>
+    <string name="weight_label">Poids (g)</string>
+    <string name="thc_label">THC (%)</string>
+    <string name="cbd_label">CBD (%)</string>
+    <string name="location_label">Localisation</string>
+    <string name="notes_label">Notes</string>
+    <string name="create_batch_button">Créer le lot</string>
+    <string name="batch_closed_badge">LOT CLÔTURÉ</string>
+    <string name="add_correction_note">Ajouter une note de correction</string>
+    <string name="change_status">Changer le statut</string>
+
+    <!-- Statuts de lot -->
+    <string name="status_graine">Graine</string>
+    <string name="status_germination">Germination</string>
+    <string name="status_croissance">Croissance</string>
+    <string name="status_recolte">Récolte</string>
+    <string name="status_sechage">Séchage</string>
+    <string name="status_transformation">Transformation</string>
+    <string name="status_conditionnement">Conditionnement</string>
+    <string name="status_controle_qualite">Contrôle Qualité</string>
+    <string name="status_stockage">Stockage</string>
+    <string name="status_dispensation">Dispensation</string>
+    <string name="status_detruit">Détruit</string>
+    <string name="status_cloture">Clôturé</string>
+
+    <!-- Rôles utilisateur -->
+    <string name="role_producteur">Producteur</string>
+    <string name="role_transformateur">Transformateur</string>
+    <string name="role_dispensaire">Dispensaire</string>
+    <string name="role_prescripteur">Prescripteur</string>
+    <string name="role_patient">Patient</string>
+    <string name="role_inspecteur_ansm">Inspecteur ANSM</string>
+
+    <!-- Journal de culture -->
+    <string name="culture_journal_title">Journal de culture</string>
+    <string name="culture_type_arrosage">Arrosage</string>
+    <string name="culture_type_nutriments">Nutriments</string>
+    <string name="culture_type_temperature">Température</string>
+    <string name="culture_type_humidite">Humidité</string>
+    <string name="culture_type_lumiere">Lumière</string>
+    <string name="culture_type_observation">Observation</string>
+    <string name="culture_type_traitement">Traitement</string>
+
+    <!-- Stock -->
+    <string name="stock_title">Gestion des stocks</string>
+    <string name="add_movement">Ajouter un mouvement</string>
+    <string name="movement_entree">Entrée</string>
+    <string name="movement_sortie_dispensation">Sortie - Dispensation</string>
+    <string name="movement_sortie_destruction">Sortie - Destruction</string>
+    <string name="movement_sortie_perte">Sortie - Perte</string>
+    <string name="movement_retour">Retour</string>
+    <string name="low_stock_warning">lots sous le seuil minimum</string>
+    <string name="divergence_warning">divergence(s) de stock à signaler</string>
+
+    <!-- Scanner -->
+    <string name="scanner_title">Scanner un QR Code</string>
+    <string name="scanner_instructions">Pointez la caméra sur un QR code de lot ou de plante</string>
+    <string name="camera_permission_required">Permission caméra requise pour scanner les QR codes.</string>
+    <string name="allow_camera">Autoriser la caméra</string>
+
+    <!-- Rapports -->
+    <string name="reports_title">Rapports &amp; Exports</string>
+    <string name="report_inventory">Inventaire des lots</string>
+    <string name="report_audit">Piste d\'audit complète</string>
+    <string name="report_stock">Mouvements de stock</string>
+    <string name="export_pdf">PDF</string>
+    <string name="export_csv">CSV</string>
+    <string name="verify_chain">Vérifier l\'intégrité</string>
+    <string name="chain_valid">Chaîne de hachage valide — aucune falsification détectée.</string>
+    <string name="chain_invalid">ALERTE : Incohérence détectée dans la chaîne d\'audit !</string>
+
+    <!-- Tableau de bord -->
+    <string name="dashboard_title">Tableau de bord</string>
+    <string name="kpi_active_batches">Lots actifs</string>
+    <string name="kpi_in_stock">En stock</string>
+    <string name="kpi_expiring">Expirant bientôt</string>
+    <string name="kpi_low_stock">Stock faible</string>
+
+    <!-- Erreurs communes -->
+    <string name="error_generic">Une erreur est survenue. Veuillez réessayer.</string>
+    <string name="error_network">Erreur de connexion. Vérifiez votre réseau.</string>
+    <string name="error_not_found">Élément introuvable.</string>
+    <string name="error_closed_batch">Le lot est clôturé. Seule une note de correction est autorisée.</string>
+    <string name="error_invalid_transition">Transition d\'état invalide.</string>
+    <string name="error_destroy_reason_required">Un motif est obligatoire pour détruire un lot.</string>
+
+    <!-- RGPD -->
+    <string name="rgpd_anonymization_notice">Conformément au RGPD, les données patient sont automatiquement anonymisées 2 ans après la dernière dispensation.</string>
+    <string name="rgpd_data_retention">Durée de conservation : 2 ans maximum après dernière dispensation</string>
+
+    <!-- Actions communes -->
+    <string name="confirm">Confirmer</string>
+    <string name="cancel">Annuler</string>
+    <string name="save">Enregistrer</string>
+    <string name="back">Retour</string>
+    <string name="refresh">Actualiser</string>
+    <string name="search_hint">Rechercher un lot...</string>
+    <string name="all_filter">Tous</string>
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Couleurs primaires CannaTrace (vert cannabis médical) -->
+    <color name="ct_green_primary">#2E7D32</color>
+    <color name="ct_green_primary_variant">#1B5E20</color>
+    <color name="ct_green_light">#4CAF50</color>
+    <color name="ct_green_container">#C8E6C9</color>
+    <color name="ct_on_green_container">#1B5E20</color>
+
+    <!-- Couleurs secondaires (bleu médical) -->
+    <color name="ct_blue_secondary">#1565C0</color>
+    <color name="ct_blue_secondary_variant">#0D47A1</color>
+    <color name="ct_blue_container">#BBDEFB</color>
+
+    <!-- Surfaces -->
+    <color name="ct_background">#FAFAFA</color>
+    <color name="ct_surface">#FFFFFF</color>
+    <color name="ct_surface_variant">#F5F5F5</color>
+
+    <!-- Erreurs / Alertes -->
+    <color name="ct_error">#B71C1C</color>
+    <color name="ct_error_container">#FFCDD2</color>
+    <color name="ct_warning">#F57F17</color>
+    <color name="ct_warning_container">#FFF9C4</color>
+
+    <!-- Texte -->
+    <color name="ct_on_background">#212121</color>
+    <color name="ct_on_surface">#212121</color>
+    <color name="ct_on_surface_variant">#757575</color>
+    <color name="ct_on_primary">#FFFFFF</color>
+
+    <!-- Statuts de lot -->
+    <color name="status_graine">#8BC34A</color>
+    <color name="status_germination">#66BB6A</color>
+    <color name="status_croissance">#43A047</color>
+    <color name="status_recolte">#FFA726</color>
+    <color name="status_sechage">#FF7043</color>
+    <color name="status_transformation">#5C6BC0</color>
+    <color name="status_conditionnement">#7B1FA2</color>
+    <color name="status_controle_qualite">#0288D1</color>
+    <color name="status_stockage">#00897B</color>
+    <color name="status_dispensation">#1E88E5</color>
+    <color name="status_detruit">#E53935</color>
+    <color name="status_cloture">#9E9E9E</color>
+</resources>

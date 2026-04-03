@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Thème principal CannaTrace (Material You / Material3) -->
+    <style name="Theme.CannaTrace" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/ct_green_primary</item>
+        <item name="android:navigationBarColor">@color/ct_background</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <!-- Thème de démarrage (SplashScreen) -->
+    <style name="Theme.CannaTrace.Starting" parent="Theme.CannaTrace">
+        <item name="android:windowBackground">@color/ct_green_primary</item>
+    </style>
+</resources>
