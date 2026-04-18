@@ -49,6 +49,15 @@ class PlantRepositoryImpl @Inject constructor(
     override suspend fun countPlantsByBatch(batchId: String): Int =
         plantDao.countPlantsByBatch(batchId)
 
+    override suspend fun syncPlants(): Result<Unit> = runCatching {
+        val response = api.getPlants()
+        if (response.isSuccessful) {
+            response.body()?.forEach { entity ->
+                plantDao.insertPlant(entity)
+            }
+        }
+    }
+
     private fun PlantEntity.toDomain() = Plant(
         id = id,
         qrCode = qrCode,

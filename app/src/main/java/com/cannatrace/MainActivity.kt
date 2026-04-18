@@ -9,7 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.cannatrace.presentation.navigation.NavGraph
+import com.cannatrace.presentation.navigation.CannaTraceNavGraph
 import com.cannatrace.ui.theme.CannaTraceTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,7 +32,7 @@ fun CannaTraceApp() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            NavGraph()
+            CannaTraceNavGraph()
         }
     }
 }

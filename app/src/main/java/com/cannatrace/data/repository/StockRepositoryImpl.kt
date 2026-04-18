@@ -71,6 +71,15 @@ class StockRepositoryImpl @Inject constructor(
     override suspend fun getLowStockBatches(threshold: Double): List<String> =
         stockEntryDao.getLowStockBatchIds(threshold)
 
+    override suspend fun syncStockEntries(): Result<Unit> = runCatching {
+        val response = api.getStockEntries()
+        if (response.isSuccessful) {
+            response.body()?.content?.forEach { entity ->
+                stockEntryDao.insertStockEntry(entity)
+            }
+        }
+    }
+
     // ─── Mappers internes ────────────────────────────────────────────────
 
     private fun StockEntryEntity.toDomain() = StockEntry(

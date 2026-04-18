@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Fond vert -->
+    <path
+        android:fillColor="#2E7D32"
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z" />
+
+    <!-- Feuille de cannabis stylisée (simplifiée) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,20 C54,20 40,35 40,50 C40,58 46,64 54,64 C62,64 68,58 68,50 C68,35 54,20 54,20 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,60 L54,88 M46,72 L54,68 L62,72"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3" />
+    <!-- Lettre C -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M38,78 C35,74 35,68 38,64 C41,60 47,59 51,61"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3"
+        android:fillType="winding" />
+</vector>

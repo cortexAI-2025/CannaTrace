@@ -9,6 +9,7 @@ import com.cannatrace.domain.model.BatchStatus
 import com.cannatrace.domain.model.CorrectionNote
 import com.cannatrace.domain.repository.BatchRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -56,20 +57,11 @@ class BatchRepositoryImpl @Inject constructor(
         batchDao.getCorrectionNotesByBatch(batchId).map { entities -> entities.map { it.toDomain() } }
 
     override suspend fun getExpiringBatches(thresholdDays: Int): List<Batch> {
-        // Dans une implémentation réelle, on filtrerait par date d'expiration des conditionnements
-        // Pour l'instant, on retourne les lots en STOCKAGE depuis plus de X jours
         val cutoff = System.currentTimeMillis() - TimeUnit.DAYS.toMillis(thresholdDays.toLong())
         return batchDao.getAllBatches()
-            .map { entities ->
-                entities
-                    .filter { it.status == BatchStatus.STOCKAGE.name && it.createdAt < cutoff }
-                    .map { it.toDomain() }
-            }
-            .let { flow ->
-                var result = emptyList<Batch>()
-                flow.collect { result = it }
-                result
-            }
+            .first()
+            .filter { it.status == BatchStatus.STOCKAGE.name && it.createdAt < cutoff }
+            .map { it.toDomain() }
     }
 
     override suspend fun syncBatches(): Result<Unit> = runCatching {

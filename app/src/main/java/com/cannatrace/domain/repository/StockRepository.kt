@@ -14,4 +14,5 @@ interface StockRepository {
     fun getDivergenceReports(batchId: String): Flow<List<DivergenceReport>>
     suspend fun resolveDivergenceReport(reportId: String, notes: String): Result<Unit>
     suspend fun getLowStockBatches(threshold: Double): List<String>
+    suspend fun syncStockEntries(): Result<Unit>
 }

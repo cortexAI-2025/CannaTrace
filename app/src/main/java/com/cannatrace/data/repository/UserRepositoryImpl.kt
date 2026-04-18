@@ -45,6 +45,10 @@ class UserRepositoryImpl @Inject constructor(
             users.firstOrNull { it.authToken.isNotBlank() }?.toDomain()
         }
 
+    // Alias for interface compatibility
+    @Suppress("UNUSED")
+    private suspend fun getAllUsers() = userDao.getAllActiveUsers()
+
     override suspend fun getUserById(id: String): User? =
         userDao.getUserById(id)?.toDomain()
 

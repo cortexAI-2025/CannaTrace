@@ -14,4 +14,5 @@ interface PlantRepository {
     suspend fun updatePlant(plant: Plant): Result<Plant>
     suspend fun updatePlantStatus(plantId: String, status: PlantStatus): Result<Unit>
     suspend fun countPlantsByBatch(batchId: String): Int
+    suspend fun syncPlants(): Result<Unit>
 }

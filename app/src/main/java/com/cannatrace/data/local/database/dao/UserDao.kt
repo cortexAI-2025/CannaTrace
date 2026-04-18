@@ -33,4 +33,10 @@ interface UserDao {
 
     @Query("SELECT * FROM users WHERE authToken != '' LIMIT 1")
     suspend fun getLoggedInUser(): UserEntity?
+
+    @Delete
+    suspend fun deleteUser(user: UserEntity)
+
+    @Query("UPDATE users SET authToken = '' WHERE authToken != ''")
+    suspend fun clearAllTokens()
 }

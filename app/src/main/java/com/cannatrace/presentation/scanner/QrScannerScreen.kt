@@ -1,6 +1,9 @@
 package com.cannatrace.presentation.scanner
 
 import android.Manifest
+import android.content.pm.PackageManager
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
@@ -20,27 +23,35 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.accompanist.permissions.isGranted
-import com.google.accompanist.permissions.rememberPermissionState
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.common.InputImage
 import java.util.concurrent.Executors
 
-@OptIn(ExperimentalPermissionsApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun QrScannerScreen(
     onScanResult: (String) -> Unit,
     onNavigateBack: () -> Unit,
     viewModel: QrScannerViewModel = hiltViewModel()
 ) {
-    val cameraPermission = rememberPermissionState(Manifest.permission.CAMERA)
+    val context = LocalContext.current
     val state by viewModel.state.collectAsState()
 
+    var hasCameraPermission by remember {
+        mutableStateOf(
+            ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) ==
+                PackageManager.PERMISSION_GRANTED
+        )
+    }
+
+    val permissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission()
+    ) { granted -> hasCameraPermission = granted }
+
     LaunchedEffect(Unit) {
-        if (!cameraPermission.status.isGranted) {
-            cameraPermission.launchPermissionRequest()
+        if (!hasCameraPermission) {
+            permissionLauncher.launch(Manifest.permission.CAMERA)
         }
     }
 
@@ -69,7 +80,7 @@ fun QrScannerScreen(
                 .padding(paddingValues),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            if (cameraPermission.status.isGranted) {
+            if (hasCameraPermission) {
                 CameraPreview(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -77,7 +88,6 @@ fun QrScannerScreen(
                     onBarcodeDetected = viewModel::onBarcodeDetected
                 )
 
-                // Résultat du scan
                 if (state.isScanning) {
                     LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
                 }
@@ -89,10 +99,7 @@ fun QrScannerScreen(
                             .padding(16.dp)
                     ) {
                         Column(modifier = Modifier.padding(16.dp)) {
-                            Text(
-                                "Dernier scan :",
-                                style = MaterialTheme.typography.labelMedium
-                            )
+                            Text("Dernier scan :", style = MaterialTheme.typography.labelMedium)
                             Text(
                                 text = info,
                                 style = MaterialTheme.typography.bodySmall,
@@ -114,10 +121,13 @@ fun QrScannerScreen(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.padding(32.dp)
+                    ) {
                         Text("Permission caméra requise pour scanner les QR codes.")
                         Spacer(Modifier.height(16.dp))
-                        Button(onClick = { cameraPermission.launchPermissionRequest() }) {
+                        Button(onClick = { permissionLauncher.launch(Manifest.permission.CAMERA) }) {
                             Text("Autoriser la caméra")
                         }
                     }
@@ -162,9 +172,10 @@ private fun CameraPreview(
                                 )
                                 barcodeScanner.process(image)
                                     .addOnSuccessListener { barcodes ->
-                                        barcodes.firstOrNull { it.valueType == Barcode.TYPE_TEXT || it.format == Barcode.FORMAT_QR_CODE }
-                                            ?.rawValue
-                                            ?.let { onBarcodeDetected(it) }
+                                        barcodes.firstOrNull {
+                                            it.valueType == Barcode.TYPE_TEXT ||
+                                                it.format == Barcode.FORMAT_QR_CODE
+                                        }?.rawValue?.let { onBarcodeDetected(it) }
                                     }
                                     .addOnCompleteListener { imageProxy.close() }
                             } else {
