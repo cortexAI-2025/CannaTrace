@@ -1,26 +1,28 @@
-name: Android CI
+name: Build Android APK
 
 on:
   push:
-    branches: [ "claude/cannatrace-android-app-wi4mP" ]
-  pull_request:
-    branches: [ "claude/cannatrace-android-app-wi4mP" ]
+    branches: [ "main" ] # Déclenche le build quand vous poussez sur la branche 'main'
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # Utilise un serveur Linux
 
     steps:
-    - uses: actions/checkout@v4
-    - name: set up JDK 11
-      uses: actions/setup-java@v4
-      with:
-        java-version: '11'
-        distribution: 'temurin'
-        cache: gradle
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-    - name: Build with Gradle
-      run: ./gradlew build
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build with Gradle
+        run: ./gradlew assembleDebug # La commande pour créer l'APK
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug
+          path: app/build/outputs/apk/debug/app-debug.apk # Où trouver l'APK généré
