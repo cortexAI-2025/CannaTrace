@@ -39,9 +39,9 @@ class BatchRepositoryImpl @Inject constructor(
     }
 
     override suspend fun updateBatch(batch: Batch): Result<Batch> = runCatching {
-        val entity = batch.copy(updatedAt = System.currentTimeMillis()).toEntity()
-        batchDao.updateBatch(entity)
-        batch
+        val updated = batch.copy(updatedAt = System.currentTimeMillis())
+        batchDao.updateBatch(updated.toEntity())
+        updated
     }
 
     override suspend fun closeBatch(batchId: String): Result<Unit> = runCatching {

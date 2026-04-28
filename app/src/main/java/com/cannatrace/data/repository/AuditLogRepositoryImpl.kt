@@ -45,7 +45,7 @@ class AuditLogRepositoryImpl @Inject constructor(
         val logs = auditLogDao.getAllAuditLogsForVerification()
         if (logs.isEmpty()) return true
 
-        for (i in 1 until logs.size) {
+        for (i in logs.indices) {
             val current = logs[i]
             val recomputed = HashUtils.computeHash(
                 previousHash = current.previousHash,

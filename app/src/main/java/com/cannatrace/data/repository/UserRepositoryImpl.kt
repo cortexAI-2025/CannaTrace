@@ -23,9 +23,23 @@ class UserRepositoryImpl @Inject constructor(
         if (response.isSuccessful) {
             val tokenResponse = response.body()!!
             val existingUser = userDao.getUserByEmail(email)
-                ?: throw IllegalStateException("Utilisateur non trouvé localement.")
-            userDao.updateAuthToken(existingUser.id, tokenResponse.accessToken)
-            existingUser.toDomain()
+            if (existingUser == null) {
+                val newUser = com.cannatrace.data.local.database.entities.UserEntity(
+                    id = tokenResponse.userId,
+                    email = email,
+                    role = tokenResponse.role,
+                    name = email.substringBefore('@'),
+                    twoFactorEnabled = false,
+                    isActive = true,
+                    createdAt = System.currentTimeMillis(),
+                    authToken = tokenResponse.accessToken
+                )
+                userDao.insertUser(newUser)
+                newUser.toDomain()
+            } else {
+                userDao.updateAuthToken(existingUser.id, tokenResponse.accessToken)
+                existingUser.toDomain()
+            }
         } else {
             throw IllegalArgumentException("Identifiants invalides. Code: ${response.code()}")
         }

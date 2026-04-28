@@ -159,7 +159,7 @@ private fun AddCultureEntryDialog(
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 // Type de mesure
-                CultureEntryType.values().forEach { type ->
+                CultureEntryType.entries.forEach { type ->
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         RadioButton(
                             selected = selectedType == type,

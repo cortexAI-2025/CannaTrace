@@ -24,7 +24,7 @@ object NetworkModule {
      * En mode debug, le MockInterceptor intercepte toutes les requêtes.
      */
     private const val BASE_URL = "https://api.cannatrace.fr/v1/"
-    private const val USE_MOCK = true // Passer à false pour utiliser le vrai backend
+    private val USE_MOCK = BuildConfig.DEBUG
 
     @Provides
     @Singleton

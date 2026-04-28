@@ -6,7 +6,6 @@ import androidx.room.RoomDatabase
 import android.content.Context
 import com.cannatrace.data.local.database.dao.*
 import com.cannatrace.data.local.database.entities.*
-import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
 
 @Database(
@@ -17,6 +16,7 @@ import net.sqlcipher.database.SupportFactory
         AuditLogEntity::class,
         UserEntity::class,
         StockEntryEntity::class,
+        DivergenceReportEntity::class,
         PrescriptionEntity::class,
         CultureEntryEntity::class,
         LocationEntity::class,
