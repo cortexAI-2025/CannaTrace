@@ -77,7 +77,11 @@ class AlertWorker @AssistedInject constructor(
         }
     }
 
+    // Debug intentionally omits POST_NOTIFICATIONS and cannot post. Release declares it
+    // and checks the Android 13+ runtime grant below. Scope the manifest-only lint warning.
+    @android.annotation.SuppressLint("NotificationPermission")
     private fun sendNotification(id: Int, title: String, message: String) {
+        if (com.cannatrace.BuildConfig.DEBUG) return
         if (Build.VERSION.SDK_INT >= 33 && androidx.core.content.ContextCompat.checkSelfPermission(
                 context, android.Manifest.permission.POST_NOTIFICATIONS
             ) != android.content.pm.PackageManager.PERMISSION_GRANTED) return
