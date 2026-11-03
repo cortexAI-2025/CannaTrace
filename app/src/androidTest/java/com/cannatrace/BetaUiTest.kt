@@ -18,7 +18,12 @@ class BetaUiTest {
         compose.onNodeWithText("Quantité initiale").performScrollTo().performTextReplacement("100")
         compose.onNodeWithText("Emplacement").performScrollTo().performTextInput("Zone UI")
         compose.onNodeWithText("Enregistrer le lot").performScrollTo().performClick()
-        compose.waitUntil(15000) { compose.onAllNodesWithText(name).fetchSemanticsNodes().isNotEmpty() }
+        // The name is also present in the form's editable text. Wait for the form
+        // to disappear before asserting that the newly created detail is displayed.
+        compose.waitUntil(15000) {
+            compose.onAllNodesWithText("Enregistrer le lot").fetchSemanticsNodes().isEmpty() &&
+                compose.onAllNodesWithText(name).fetchSemanticsNodes().isNotEmpty()
+        }
         compose.onNodeWithText(name).assertIsDisplayed()
         compose.onNodeWithText("Quitter").performClick()
         compose.onNodeWithText("Démonstration lecteur").performClick()
