@@ -8,9 +8,9 @@ Prérequis : JDK 17, Android SDK 34 / build-tools 34.0.0, accès Google Maven et
 adb install -r app/build/outputs/apk/debug/app-debug.apk
 ```
 
-Android minimum : 8.0 (API 26). Application debug : `com.cannatrace.debug`, version `1.0.0-beta.1` (code 2). APK universel sans filtre ABI, signature debug uniquement. Aucun Play Store ni clé release. Les bibliothèques natives SQLCipher déterminent les ABI effectives : les vérifier dans le rapport APK après build.
+Android minimum : 8.0 (API 26). Application debug : `com.cannatrace.debug`, version `1.0.0-beta.1` (code 2). APK universel sans filtre ABI, signature debug uniquement. Métadonnées et SHA-256 du fichier livré : [validation/apk-debug.json](validation/apk-debug.json). Aucun Play Store ni clé release. Les bibliothèques natives SQLCipher déterminent les ABI effectives : les vérifier dans le rapport APK après build.
 
-Sur téléphone : transférer l'APK, autoriser temporairement l'installation depuis la source utilisée, installer puis ouvrir « CannaTrace bêta ». Accorder la caméra lors de l'ouverture du scanner. La variante debug supprime INTERNET et les permissions stockage/biométrie/notifications du manifeste principal. Vérifier les permissions fusionnées du fichier réellement produit.
+Sur téléphone : transférer l'APK, autoriser temporairement l'installation depuis la source utilisée, installer puis ouvrir « CannaTrace bêta ». Accorder la caméra lors de l'ouverture du scanner. Le fichier livré fait 56 771 464 octets (56,8 Mo) et contient arm64-v8a, armeabi-v7a, x86 et x86_64. Compatible sur le papier avec votre Samsung A14 ; installation/caméra à valider sur ce téléphone. La variante debug supprime INTERNET et les permissions stockage/biométrie/notifications du manifeste principal. Vérifier les permissions fusionnées du fichier réellement produit.
 
 La base `cannatrace-beta.db` est chiffrée par SQLCipher ; clé aléatoire protégée via Keystore. Les sauvegardes automatiques sont désactivées. Désinstaller ou effacer les données supprime la démonstration. Aucun export/restauration durable ou synchronisation n'est fourni. Ne jamais y saisir de données réelles.
 
@@ -46,3 +46,8 @@ Un transfert déplace le lot entier entre emplacements ; le fractionnement multi
 
 ## Limites de sécurité
 Profils fictifs librement sélectionnables. Pas d'authentification serveur, d'organisations, de révocation distante ou de protection contre un propriétaire d'appareil compromis. Journal append-only dans SQLite avec chaînage SHA-256 ; sans ancrage externe, suppression de suffixe ou reconstruction complète par attaquant privilégié non détectable. Les identifiants restent conservés tant que la base n'est pas détruite. Aucun QR n'est une preuve d'authenticité.
+
+Les builds locaux et ceux de GitHub peuvent utiliser des certificats debug différents : leurs SHA-256 et leur signature ne sont pas interchangeables. Conserver le même canal de distribution pour les mises à jour. Ne pas désinstaller pour contourner une incompatibilité de signature si vous souhaitez conserver les données fictives.
+
+## Validation de livraison
+Les 42 tests JVM, le lint, les builds APK/test APK, le backend et les 5 tests instrumentés sont validés. Exécution CI : https://github.com/cortexAI-2025/CannaTrace/actions/runs/41602058486. Le tableau de recette physique ci-dessus reste à exécuter sur téléphone, sans présumer de son résultat.

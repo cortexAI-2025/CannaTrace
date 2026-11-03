@@ -20,3 +20,8 @@ iText retiré : inutilisé, l'exporteur existant utilise PdfDocument Android nat
 Recherche par motifs sur 18 commits : aucun candidat pour clés privées, tokens GitHub, Stripe live ou clés AWS, sans garantie exhaustive. Aucun accès aux alertes de sécurité privées du compte n'est revendiqué. Les dépendances Android anciennes et transitives nécessitent un suivi de maintenance, de compatibilité Android récente et de vulnérabilités au-delà du seul build. Une absence de résultat de scanner ne prouve pas l'absence de vulnérabilité.
 
 Le backend prototype reste hors périmètre de déploiement : isolation d'organisations, rôles cohérents avec Android, révocation JWT, rotation des refresh tokens, audit atomique et stock distant non implémentés. Aucune base distante n'a été contactée.
+
+## Contrôles effectivement exécutés
+- OSV : 141 coordonnées Maven du graphe résolu de l'application (modèle lint debug), aucune vulnérabilité connue signalée. Résultat brut : `validation/maven-osv.json`. Ce graphe inclut les dépendances transitives applicatives ; les outils de build et la couverture de toutes les bases de vulnérabilités ne sont pas garantis.
+- pip-audit sur backend/requirements.txt : aucune vulnérabilité connue signalée, résultat dans `validation/backend-pip-audit.json`. Les plages Python ne constituent pas un verrouillage reproductible de versions.
+- Lint debug : zéro erreur, 160 avertissements ; résumé par catégorie dans `validation/lint-summary.json`. Une suppression ciblée de NotificationPermission accompagne le worker historique : debug ne déclare pas cette permission et retourne sans notifier ; release la déclare et vérifie l'autorisation runtime Android 13+. Aucun contrôle lint global n'est désactivé.

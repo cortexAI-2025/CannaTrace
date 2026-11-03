@@ -1,0 +1,26 @@
+{
+  "file_name": "CannaTrace-V1-beta1-universal-debug.apk",
+  "size_bytes": 56771464,
+  "sha256": "18bfdb39435b75d7940212944018fc6f2ff50d40650cd9275d3f1af050ba1aed",
+  "source_commit": "4f26273e03a6b5129257168fca467d51789b74d0",
+  "test_commit": "8e82487b56c4b49f43a0b956308f842511000a4a",
+  "application_id": "com.cannatrace.debug",
+  "version_name": "1.0.0-beta.1",
+  "version_code": 2,
+  "min_sdk": 26,
+  "target_sdk": 34,
+  "abis": [
+    "arm64-v8a",
+    "armeabi-v7a",
+    "x86",
+    "x86_64"
+  ],
+  "signing": "Android Debug, APK Signature Scheme v2",
+  "certificate_sha256": "8878eeae998a712caa9f931f818b6ece4144e80e7403f6da9242c336d5e953bb",
+  "permissions": [
+    "android.permission.CAMERA",
+    "android.permission.WAKE_LOCK",
+    "android.permission.ACCESS_NETWORK_STATE",
+    "com.cannatrace.debug.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+  ]
+}
