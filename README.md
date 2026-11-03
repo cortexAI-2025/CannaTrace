@@ -1,6 +1,9 @@
 # CannaTrace — Traçabilité Cannabis Médical (Android)
 
-Application Android de traçabilité **seed-to-sale** (de la graine à la vente) pour le cannabis thérapeutique, conforme aux futures exigences de l'**ANSM** (Agence nationale de sécurité du médicament) pour les expérimentations de cannabis médical en France.
+> **État V1 bêta (novembre 2026)** : parcours local fictif sur la variante debug, sans API ni synchronisation. Les profils simulent les permissions, sans authentification distante. Consultez [l'audit](docs/AUDIT_INITIAL.md), [l'installation et la recette](docs/RECETTE_ANDROID.md) et [le rapport de validation](docs/GO_NO_GO.md). La liste historique ci-dessous décrit des écrans/prototypes et ne constitue pas une preuve de fonctionnement ni de conformité.
+
+
+Application Android de traçabilité **seed-to-sale** (de la graine à la vente) pour le cannabis thérapeutique, prototype sans conformité démontrée aux exigences de l'**ANSM** (Agence nationale de sécurité du médicament) pour les expérimentations de cannabis médical en France.
 
 ---
 
@@ -31,7 +34,7 @@ Application Android de traçabilité **seed-to-sale** (de la graine à la vente)
 - ✅ Alertes automatiques (péremption, rupture de stock)
 - ✅ Interface bilingue FR/EN
 - ✅ Base locale Room + SQLCipher
-- ✅ **Blockchain légère** : hash SHA-256 chaîné pour l'immutabilité des logs d'audit
+- ✅ **Journal chaîné local** : hash SHA-256 chaîné pour l'immutabilité des logs d'audit
 - ✅ RGPD : anonymisation automatique des données patient après 2 ans
 
 ---
@@ -187,7 +190,7 @@ Depuis n'importe quel état actif : → DÉTRUIT (motif obligatoire)
 
 **Règle immuabilité** : Un lot clôturé (`isClosed = true`) ne peut plus être modifié. Seule l'ajout d'une `CorrectionNote` avec justification est autorisé.
 
-### Blockchain légère (Audit Logs)
+### Journal chaîné local (Audit Logs)
 
 Chaque action critique génère un hash chaîné :
 
@@ -272,13 +275,7 @@ CannaTrace/
 
 ## Conformité réglementaire
 
-Cette application est conçue pour respecter :
-
-- **ANSM** — Décision du 7 octobre 2020 relative à l'expérimentation du cannabis médical en France
-- **RGPD** (EU 2016/679) — Droit à l'effacement, anonymisation automatique
-- **CNIL** — Recommandations sur la durée de conservation des données de santé
-- **ISO 11607** — Conditionnement pour dispositifs médicaux stériles
-- **BPF** (Bonnes Pratiques de Fabrication) — Traçabilité et enregistrements
+Aucune conformité réglementaire démontrée. Les fonctions historiques de santé ne doivent pas recevoir de données réelles. Les exigences ANRAC / loi 13-21 restent à vérifier selon [la note réglementaire](docs/REGLEMENTATION.md).
 
 ---
 

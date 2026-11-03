@@ -32,6 +32,7 @@ class SyncWorker @AssistedInject constructor(
 ) : CoroutineWorker(context, workerParams) {
 
     override suspend fun doWork(): Result {
+        if (com.cannatrace.BuildConfig.DEBUG) return Result.success(workDataOf(KEY_RESULT to "Bêta locale : synchronisation désactivée"))
         return try {
             setProgress(workDataOf(KEY_PROGRESS to "Synchronisation des lots..."))
             batchRepository.syncBatches().getOrThrow()

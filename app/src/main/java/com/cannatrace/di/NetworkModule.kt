@@ -36,7 +36,7 @@ object NetworkModule {
 
         if (USE_MOCK) {
             // Mode démonstration : intercepteur de mock
-            builder.addInterceptor(MockInterceptor())
+            builder.addInterceptor { throw java.io.IOException("Bêta locale : réseau désactivé") }
         }
 
         if (BuildConfig.DEBUG) {

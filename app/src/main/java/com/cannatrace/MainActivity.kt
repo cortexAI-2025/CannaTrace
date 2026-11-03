@@ -32,7 +32,7 @@ fun CannaTraceApp() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            CannaTraceNavGraph()
+            if (BuildConfig.DEBUG) com.cannatrace.presentation.batch.TraceBetaScreen() else CannaTraceNavGraph()
         }
     }
 }

@@ -112,8 +112,9 @@ fun CannaTraceNavGraph() {
             composable(Screen.QrScanner.route) {
                 QrScannerScreen(
                     onScanResult = { scannedValue ->
-                        navController.popBackStack()
-                        // Naviguer vers le détail si c'est un lot connu
+                        navController.navigate(Screen.BatchDetail.createRoute(scannedValue)) {
+                            popUpTo(Screen.QrScanner.route) { inclusive = true }
+                        }
                     },
                     onNavigateBack = { navController.popBackStack() }
                 )

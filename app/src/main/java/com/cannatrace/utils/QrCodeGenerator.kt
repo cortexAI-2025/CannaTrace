@@ -45,8 +45,8 @@ object QrCodeGenerator {
     }
 
     /**
-     * Génère le contenu d'un QR code pour un lot avec toutes les informations réglementaires.
-     * Format : JSON compact pour la lisibilité maximale par les systèmes tiers.
+     * Génère un identifiant opaque sans données métier ni secret.
+     * Les paramètres historiques sont conservés pour compatibilité source.
      */
     fun generateBatchQrContent(
         batchId: String,
@@ -55,7 +55,7 @@ object QrCodeGenerator {
         thcContent: Double,
         cbdContent: Double
     ): String {
-        return """{"id":"$batchId","lot":"$batchNumber","souche":"$strainName","thc":$thcContent,"cbd":$cbdContent}"""
+        return com.cannatrace.domain.model.TraceRules.qr(batchId)
     }
 
     /**
@@ -75,6 +75,8 @@ object QrCodeGenerator {
      * Retourne null si le format n'est pas reconnu.
      */
     fun parseQrContent(content: String): QrParseResult? {
+        val id = com.cannatrace.domain.model.TraceRules.parseQr(content)
+        if (id != null) return QrParseResult(QrType.BATCH, id, content)
         return when {
             content.startsWith("CANNATRACE:PLANT:") -> {
                 val parts = content.split(":")

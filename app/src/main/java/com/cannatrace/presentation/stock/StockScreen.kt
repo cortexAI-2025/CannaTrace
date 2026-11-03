@@ -210,7 +210,7 @@ private fun AddStockMovementDialog(
                 )
                 Column {
                     Text("Type de mouvement", style = MaterialTheme.typography.labelMedium)
-                    MovementType.values().forEach { type ->
+                    MovementType.entries.forEach { type ->
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             RadioButton(
                                 selected = selectedType == type,

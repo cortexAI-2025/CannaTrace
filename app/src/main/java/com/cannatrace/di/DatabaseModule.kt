@@ -21,7 +21,7 @@ object DatabaseModule {
 
     /**
      * Fournit la passphrase chiffrée pour SQLCipher, stockée dans EncryptedSharedPreferences.
-     * En production, cette passphrase devrait être dérivée des credentials de l'utilisateur.
+     * Clé aléatoire par installation, protégée par Android Keystore.
      */
     @Provides
     @Singleton
@@ -44,10 +44,10 @@ object DatabaseModule {
         } else {
             // Génère une passphrase aléatoire à la première installation
             val newPassphrase = ByteArray(32).also { java.security.SecureRandom().nextBytes(it) }
-            prefs.edit().putString(
+            check(prefs.edit().putString(
                 DB_PASSPHRASE_KEY,
                 android.util.Base64.encodeToString(newPassphrase, android.util.Base64.DEFAULT)
-            ).apply()
+            ).commit()) { "Impossible de conserver la clé de chiffrement" }
             newPassphrase
         }
     }

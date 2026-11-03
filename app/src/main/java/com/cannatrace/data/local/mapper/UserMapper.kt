@@ -7,7 +7,7 @@ import com.cannatrace.domain.model.UserRole
 fun UserEntity.toDomain(): User = User(
     id = id,
     email = email,
-    role = UserRole.valueOf(role),
+    role = runCatching { UserRole.valueOf(role) }.getOrDefault(UserRole.PATIENT),
     name = name,
     twoFactorEnabled = twoFactorEnabled,
     isActive = isActive,
