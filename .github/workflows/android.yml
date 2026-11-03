@@ -1,8 +1,14 @@
 name: Android beta validation
 on:
-  push:
-    branches: [feature/cannatrace-v1-finalization]
   pull_request:
+    paths:
+      - 'app/**'
+      - 'backend/**'
+      - 'gradle/**'
+      - '*.gradle.kts'
+      - 'gradle.properties'
+      - 'gradlew*'
+      - '.github/workflows/android.yml'
   workflow_dispatch:
 permissions:
   contents: read

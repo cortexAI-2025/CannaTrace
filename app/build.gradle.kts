@@ -119,9 +119,6 @@ dependencies {
     // Biometric
     implementation(libs.biometric)
 
-    // CSV
-    implementation(libs.opencsv)
-
     // ZXing QR Code
     implementation(libs.zxing.core)
 

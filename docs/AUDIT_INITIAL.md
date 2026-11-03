@@ -16,6 +16,9 @@
 | Stock | Partiel | Écritures sans contrôle atomique des soldes, transferts absents |
 | QR génération / caméra | Partiel | JSON métier exposé ; format généré non résolu ; navigation détail TODO |
 | Audit | Partiel | Chaînage, mais erreurs de journal ignorées et mutations non atomiques |
+| API auth/lots prototype | Opérationnel en CI #19 | Un test backend réussi, sans validation Android intégrée |
+| Transferts atomiques / idempotence | Absents | Pas de service transactionnel unifié |
+| Organisations / révocation serveur | Absentes | Pas de cloisonnement multi-organisation démontré |
 | Authentification | Simulée en debug | Backend incomplet, pas d'isolation organisation démontrée |
 | Synchronisation | Bloquée | Pull mock susceptible d'écraser des données ; pas d'outbox/conflits testés |
 | API prototype PR #1 | Partiel | Auth JWT et lots ; stock/audit/organisations/révocation absents |

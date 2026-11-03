@@ -34,6 +34,9 @@ fun TraceBetaScreen(vm: TraceViewModel = hiltViewModel()) {
     var selected by rememberSaveable { mutableStateOf("") }
     var query by rememberSaveable { mutableStateOf("") }
     var showArchived by rememberSaveable { mutableStateOf(false) }
+    val contentScroll = rememberScrollState()
+    val keyboard = androidx.compose.ui.platform.LocalSoftwareKeyboardController.current
+    LaunchedEffect(route, selected) { contentScroll.scrollTo(0); keyboard?.hide() }
     BackHandler(enabled = route != "home") { route = "home" }
 
     if (message != null) AlertDialog(onDismissRequest = vm::dismiss, confirmButton = {
@@ -58,7 +61,7 @@ fun TraceBetaScreen(vm: TraceViewModel = hiltViewModel()) {
             if (route != "home") TextButton(onClick = { route = "home" }) { Text("Retour") }
         }, actions = { TextButton(onClick = { vm.store.logout(); route = "home" }, enabled = !busy) { Text("Quitter") } })
     }) { padding ->
-        Column(Modifier.fillMaxSize().padding(padding).imePadding().verticalScroll(rememberScrollState()).padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        Column(Modifier.fillMaxSize().padding(padding).imePadding().verticalScroll(contentScroll).padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             Text("BÊTA LOCALE · FICTIF · HORS LIGNE", style = MaterialTheme.typography.labelMedium)
             if (busy) LinearProgressIndicator(Modifier.fillMaxWidth())
             when (route) {

@@ -14,7 +14,7 @@
 ## Dépendances
 Frameworks existants conservés : Kotlin 1.9.24, Compose, Hilt, Room 2.6.1, SQLCipher 4.5.4, CameraX 1.3.4, ML Kit 17.3.0, ZXing 3.5.3, Retrofit/OkHttp. Le retrait du plugin Compose incompatible et le compilateur Compose 1.5.14 proviennent de PR #1.
 
-iText retiré : inutilisé, l'exporteur existant utilise PdfDocument Android natif ; la coordonnée déclarée était incorrecte pour 7.2.5 et introduisait inutilement une licence AGPL/commerciale (https://itextpdf.com/products/itext-core). Dépôt JitPack retiré, aucune dépendance ne le nécessite. Aucun nouvel SDK applicatif ajouté. Wrapper Gradle vérifié par empreinte officielle.
+iText retiré : inutilisé, l'exporteur existant utilise PdfDocument Android natif ; la coordonnée déclarée était incorrecte pour 7.2.5 et introduisait inutilement une licence AGPL/commerciale (https://itextpdf.com/products/itext-core). OpenCSV retiré également : inutilisé, l'exporteur CSV existant écrit avec Java standard. Dépôt JitPack retiré, aucune dépendance ne le nécessite. Aucun nouvel SDK applicatif ajouté. Wrapper Gradle vérifié par empreinte officielle.
 
 ## Limites
 Recherche par motifs sur 18 commits : aucun candidat pour clés privées, tokens GitHub, Stripe live ou clés AWS, sans garantie exhaustive. Aucun accès aux alertes de sécurité privées du compte n'est revendiqué. Les dépendances Android anciennes et transitives nécessitent un suivi de maintenance, de compatibilité Android récente et de vulnérabilités au-delà du seul build. Une absence de résultat de scanner ne prouve pas l'absence de vulnérabilité.

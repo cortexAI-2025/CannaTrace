@@ -6,7 +6,6 @@ import com.cannatrace.domain.model.Batch
 import com.cannatrace.domain.model.StockEntry
 import com.cannatrace.utils.DateUtils.toDisplayDateTime
 import java.io.File
-import java.io.FileWriter
 import java.io.IOException
 
 /**
@@ -28,7 +27,7 @@ object CsvExporter {
         val fileName = "inventaire_lots_${System.currentTimeMillis()}.csv"
         val file = File(context.cacheDir, fileName)
 
-        FileWriter(file, Charsets.UTF_8).use { writer ->
+        file.bufferedWriter(Charsets.UTF_8).use { writer ->
             // En-tête
             writer.write(
                 listOf(
@@ -70,7 +69,7 @@ object CsvExporter {
         val fileName = "mouvements_stock_${System.currentTimeMillis()}.csv"
         val file = File(context.cacheDir, fileName)
 
-        FileWriter(file, Charsets.UTF_8).use { writer ->
+        file.bufferedWriter(Charsets.UTF_8).use { writer ->
             writer.write(
                 listOf(
                     "ID", "Numéro de Lot", "Type de Mouvement",
@@ -106,7 +105,7 @@ object CsvExporter {
         val fileName = "audit_trail_${System.currentTimeMillis()}.csv"
         val file = File(context.cacheDir, fileName)
 
-        FileWriter(file, Charsets.UTF_8).use { writer ->
+        file.bufferedWriter(Charsets.UTF_8).use { writer ->
             writer.write(
                 listOf(
                     "ID", "Action", "Type Entité", "ID Entité",

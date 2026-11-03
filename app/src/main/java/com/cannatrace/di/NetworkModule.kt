@@ -2,7 +2,6 @@ package com.cannatrace.di
 
 import com.cannatrace.BuildConfig
 import com.cannatrace.data.remote.CannaTraceApi
-import com.cannatrace.data.remote.MockInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,7 +20,7 @@ object NetworkModule {
     /**
      * URL de base du serveur CannaTrace.
      * Configurer via build variant ou fichier de configuration.
-     * En mode debug, le MockInterceptor intercepte toutes les requêtes.
+     * En mode debug, toutes les requêtes réseau sont refusées (bêta locale).
      */
     private const val BASE_URL = "https://api.cannatrace.fr/v1/"
     private val USE_MOCK = BuildConfig.DEBUG // Jamais de données simulées en release
@@ -35,7 +34,7 @@ object NetworkModule {
             .writeTimeout(30, TimeUnit.SECONDS)
 
         if (USE_MOCK) {
-            // Mode démonstration : intercepteur de mock
+            // Bêta locale : aucune requête ne doit sortir de l’appareil
             builder.addInterceptor { throw java.io.IOException("Bêta locale : réseau désactivé") }
         }
 
