@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.ksp)
@@ -15,8 +14,8 @@ android {
         applicationId = "com.cannatrace"
         minSdk = 26
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 2
+        versionName = "1.0.0-beta.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -51,6 +50,10 @@ android {
     buildFeatures {
         compose = true
         buildConfig = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.14"
     }
 
     packaging {
@@ -116,12 +119,6 @@ dependencies {
     // Biometric
     implementation(libs.biometric)
 
-    // iText PDF
-    implementation(libs.itext.core)
-
-    // CSV
-    implementation(libs.opencsv)
-
     // ZXing QR Code
     implementation(libs.zxing.core)
 
@@ -150,3 +147,5 @@ dependencies {
 kapt {
     correctErrorTypes = true
 }
+
+ksp { arg("room.schemaLocation", "$projectDir/schemas") }

@@ -14,7 +14,7 @@
     <string name="login_error_invalid_email">Format d\'email invalide.</string>
     <string name="login_error_empty_password">Le mot de passe est obligatoire.</string>
     <string name="login_error_credentials">Identifiants invalides.</string>
-    <string name="legal_disclaimer">Application réservée aux professionnels habilités.\nConforme aux exigences ANSM pour le cannabis thérapeutique.</string>
+    <string name="legal_disclaimer">Application réservée aux professionnels habilités.\nPrototype : aucune conformité ANSM ou ANRAC démontrée.</string>
 
     <!-- Navigation -->
     <string name="nav_dashboard">Tableau de bord</string>

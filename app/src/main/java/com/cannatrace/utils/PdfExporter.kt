@@ -18,7 +18,7 @@ import java.io.IOException
  * Générateur de rapports PDF pour l'ANSM.
  *
  * Utilise android.graphics.pdf.PdfDocument (natif Android, sans dépendance externe)
- * pour créer des rapports conformes aux exigences réglementaires françaises.
+ * pour créer des rapports internes sans valeur de certification réglementaire.
  *
  * Format de page : A4 (595 x 842 points à 72 dpi)
  */
@@ -234,7 +234,7 @@ object PdfExporter {
 
         // Mention légale
         canvas.drawText(
-            "Document confidentiel - Réglementé ANSM - Usage médical uniquement",
+            "Document interne - Prototype - Données fictives uniquement",
             MARGIN, y, smallPaint
         )
         y += LINE_HEIGHT * 1.5f
@@ -276,7 +276,7 @@ object PdfExporter {
         val footerY = PAGE_HEIGHT - MARGIN / 2
         canvas.drawLine(MARGIN, footerY - 10f, PAGE_WIDTH - MARGIN, footerY - 10f, headerLinePaint)
         canvas.drawText(
-            "CannaTrace v1.0 - Traçabilité Cannabis Médical - Conforme ANSM - Page $pageNumber",
+            "CannaTrace v1.0 - Traçabilité interne - Prototype non certifié - Page $pageNumber",
             MARGIN, footerY, smallPaint
         )
     }

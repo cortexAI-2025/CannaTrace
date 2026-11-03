@@ -32,6 +32,7 @@ class AlertWorker @AssistedInject constructor(
 ) : CoroutineWorker(context, workerParams) {
 
     override suspend fun doWork(): Result {
+        if (com.cannatrace.BuildConfig.DEBUG) return Result.success()
         createNotificationChannel()
 
         var alertCount = 0
@@ -76,7 +77,14 @@ class AlertWorker @AssistedInject constructor(
         }
     }
 
+    // Debug intentionally omits POST_NOTIFICATIONS and cannot post. Release declares it
+    // and checks the Android 13+ runtime grant below. Scope the manifest-only lint warning.
+    @android.annotation.SuppressLint("NotificationPermission")
     private fun sendNotification(id: Int, title: String, message: String) {
+        if (com.cannatrace.BuildConfig.DEBUG) return
+        if (Build.VERSION.SDK_INT >= 33 && androidx.core.content.ContextCompat.checkSelfPermission(
+                context, android.Manifest.permission.POST_NOTIFICATIONS
+            ) != android.content.pm.PackageManager.PERMISSION_GRANTED) return
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(android.R.drawable.ic_dialog_alert)
             .setContentTitle(title)

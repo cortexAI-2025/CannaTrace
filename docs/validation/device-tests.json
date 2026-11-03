@@ -1,0 +1,13 @@
+{
+  "run_url": "https://github.com/cortexAI-2025/CannaTrace/actions/runs/41602058486",
+  "commit": "8e82487b56c4b49f43a0b956308f842511000a4a",
+  "device": "Android emulator API 29, x86_64",
+  "tests": 5,
+  "failures": 0,
+  "job_result": "success",
+  "suites": [
+    "LocalTraceStoreTest (4)",
+    "BetaUiTest (1)"
+  ],
+  "physical_camera_tested": false
+}

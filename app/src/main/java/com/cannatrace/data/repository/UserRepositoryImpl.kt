@@ -23,9 +23,23 @@ class UserRepositoryImpl @Inject constructor(
         if (response.isSuccessful) {
             val tokenResponse = response.body()!!
             val existingUser = userDao.getUserByEmail(email)
-                ?: throw IllegalStateException("Utilisateur non trouvé localement.")
-            userDao.updateAuthToken(existingUser.id, tokenResponse.accessToken)
-            existingUser.toDomain()
+            if (existingUser == null) {
+                val newUser = com.cannatrace.data.local.database.entities.UserEntity(
+                    id = tokenResponse.userId,
+                    email = email,
+                    role = tokenResponse.role,
+                    name = email.substringBefore('@'),
+                    twoFactorEnabled = false,
+                    isActive = true,
+                    createdAt = System.currentTimeMillis(),
+                    authToken = tokenResponse.accessToken
+                )
+                userDao.insertUser(newUser)
+                newUser.toDomain()
+            } else {
+                userDao.updateAuthToken(existingUser.id, tokenResponse.accessToken)
+                existingUser.toDomain()
+            }
         } else {
             throw IllegalArgumentException("Identifiants invalides. Code: ${response.code()}")
         }
@@ -52,13 +66,8 @@ class UserRepositoryImpl @Inject constructor(
     override suspend fun getUserById(id: String): User? =
         userDao.getUserById(id)?.toDomain()
 
-    override suspend fun createUser(user: User, password: String): Result<User> = runCatching {
-        // Le hash du mot de passe doit être fait côté serveur dans une implémentation réelle.
-        // Ici on simule un hash simple pour le mock local.
-        val hash = password.hashCode().toString()
-        userDao.insertUser(user.toEntity(passwordHash = hash))
-        user
-    }
+    override suspend fun createUser(user: User, password: String): Result<User> =
+        Result.failure(UnsupportedOperationException("Création locale de comptes désactivée : utiliser un serveur authentifié"))
 
     override suspend fun updateUser(user: User): Result<User> = runCatching {
         val existing = userDao.getUserById(user.id)

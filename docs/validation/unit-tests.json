@@ -1,0 +1,32 @@
+[
+  {
+    "suite": "com.cannatrace.BatchTransitionTest",
+    "tests": 18,
+    "failures": 0,
+    "errors": 0
+  },
+  {
+    "suite": "com.cannatrace.AuditLogTest",
+    "tests": 7,
+    "failures": 0,
+    "errors": 0
+  },
+  {
+    "suite": "com.cannatrace.HashUtilsTest",
+    "tests": 8,
+    "failures": 0,
+    "errors": 0
+  },
+  {
+    "suite": "com.cannatrace.TraceRulesTest",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0
+  },
+  {
+    "suite": "com.cannatrace.QrLookupTest",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0
+  }
+]

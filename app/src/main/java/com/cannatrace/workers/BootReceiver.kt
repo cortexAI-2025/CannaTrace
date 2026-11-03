@@ -14,6 +14,7 @@ import androidx.work.WorkManager
 class BootReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
+        if (com.cannatrace.BuildConfig.DEBUG) return
         if (intent.action != Intent.ACTION_BOOT_COMPLETED) return
 
         val workManager = WorkManager.getInstance(context)

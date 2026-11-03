@@ -39,7 +39,7 @@ fun ReportScreen(
                     color = MaterialTheme.colorScheme.primary
                 )
                 Text(
-                    "Génération de rapports conformes aux exigences de l'Agence Nationale de Sécurité du Médicament.",
+                    "Rapports internes de démonstration. Aucune conformité réglementaire démontrée.",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -100,7 +100,7 @@ fun ReportScreen(
                                     fontWeight = FontWeight.Bold
                                 )
                                 Text(
-                                    state.exportedFile,
+                                    state.exportedFile.orEmpty(),
                                     style = MaterialTheme.typography.bodySmall
                                 )
                             }

@@ -25,5 +25,5 @@
         android:pathData="M38,78 C35,74 35,68 38,64 C41,60 47,59 51,61"
         android:strokeColor="#FFFFFF"
         android:strokeWidth="3"
-        android:fillType="winding" />
+        android:fillType="nonZero" />
 </vector>

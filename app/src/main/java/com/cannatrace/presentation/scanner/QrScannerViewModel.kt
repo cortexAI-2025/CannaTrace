@@ -39,15 +39,18 @@ class QrScannerViewModel @Inject constructor(
         lastScannedRaw = rawValue
 
         viewModelScope.launch {
-            _state.update { it.copy(isScanning = true) }
+            _state.update { it.copy(isScanning = true, error = null, lastScanInfo = null) }
 
-            when (val result = scanQrCodeUseCase(rawValue)) {
+            val resolved = try { scanQrCodeUseCase(rawValue) }
+            catch (e: kotlinx.coroutines.CancellationException) { throw e }
+            catch (e: Exception) { QrScanResult.Error("Lecture du lot impossible. Réessayez.") }
+            when (val result = resolved) {
                 is QrScanResult.BatchFound -> {
                     _state.update {
                         it.copy(
                             isScanning = false,
                             lastScanInfo = "Lot détecté : ${result.batch.batchNumber} (${result.batch.strainName})",
-                            scannedValue = rawValue
+                            scannedValue = result.batch.id
                         )
                     }
                 }
@@ -56,7 +59,7 @@ class QrScannerViewModel @Inject constructor(
                         it.copy(
                             isScanning = false,
                             lastScanInfo = "Plante détectée : ${result.plant.qrCode} — Lot: ${result.plant.batchId}",
-                            scannedValue = rawValue
+                            scannedValue = result.plant.batchId
                         )
                     }
                 }
@@ -65,7 +68,7 @@ class QrScannerViewModel @Inject constructor(
                         it.copy(
                             isScanning = false,
                             lastScanInfo = "Code inconnu : ${result.code.take(40)}",
-                            scannedValue = rawValue
+                            scannedValue = null
                         )
                     }
                 }
@@ -82,7 +85,7 @@ class QrScannerViewModel @Inject constructor(
     }
 
     fun clearScan() {
-        _state.update { it.copy(scannedValue = null) }
+        _state.update { it.copy(scannedValue = null, error = null, lastScanInfo = null) }
         lastScannedRaw = ""
     }
 }

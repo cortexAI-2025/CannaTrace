@@ -23,6 +23,14 @@ class ScanQrCodeUseCase @Inject constructor(
             return QrScanResult.Error("Code QR vide ou invalide")
         }
 
+        val opaqueId = com.cannatrace.domain.model.TraceRules.parseQr(qrCodeData)
+        if (opaqueId != null) {
+            val batch = batchRepository.getBatchById(opaqueId)
+            return if (batch != null) QrScanResult.BatchFound(batch) else QrScanResult.UnknownCode(qrCodeData)
+        }
+        if (qrCodeData.startsWith("cannatrace:")) return QrScanResult.Error("Format QR CannaTrace invalide")
+
+        // Compatibility with legacy locally stored identifiers.
         // Try to find a plant by QR code
         val plant = plantRepository.getPlantByQrCode(qrCodeData)
         if (plant != null) {

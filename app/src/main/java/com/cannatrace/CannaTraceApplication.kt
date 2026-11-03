@@ -26,7 +26,7 @@ class CannaTraceApplication : Application(), Configuration.Provider {
 
     override fun onCreate() {
         super.onCreate()
-        scheduleWorkers()
+        if (!BuildConfig.DEBUG) scheduleWorkers()
     }
 
     private fun scheduleWorkers() {

@@ -150,7 +150,7 @@ fun DashboardScreen(
             item {
                 Card(modifier = Modifier.fillMaxWidth()) {
                     Column(modifier = Modifier.padding(16.dp)) {
-                        BatchStatus.values().forEach { status ->
+                        BatchStatus.entries.forEach { status ->
                             val count = state.batchesByStatus[status] ?: 0
                             if (count > 0) {
                                 Row(

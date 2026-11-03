@@ -1,0 +1,12 @@
+.gradle/
+**/build/
+local.properties
+*.db
+*.db-shm
+*.db-wal
+*.jks
+*.keystore
+.env
+.venv/
+__pycache__/
+.pytest_cache/

@@ -108,9 +108,9 @@ fun BatchDetailScreen(
                 }
             }
 
-            // Hash de la blockchain légère
+            // Hash de la journal chaîné local
             item {
-                InfoCard(title = "Intégrité (Blockchain légère)") {
+                InfoCard(title = "Intégrité (Journal chaîné local)") {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically

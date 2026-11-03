@@ -1,0 +1,17 @@
+{
+  "severity_counts": {
+    "Warning": 160
+  },
+  "issue_counts": {
+    "ScopedStorage": 3,
+    "UnusedAttribute": 1,
+    "GradleDependency": 21,
+    "LockedOrientationActivity": 1,
+    "ComposableNaming": 1,
+    "DiscouragedApi": 1,
+    "ObsoleteSdkInt": 1,
+    "StaticFieldLeak": 1,
+    "UnusedResources": 128,
+    "TypographyEllipsis": 2
+  }
+}

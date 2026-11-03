@@ -180,7 +180,7 @@ fun LoginScreen(
             // Mention réglementaire
             Text(
                 text = "Application réservée aux professionnels habilités.\n" +
-                    "Conforme aux exigences ANSM pour le cannabis thérapeutique.",
+                    "Prototype : aucune conformité ANSM ou ANRAC démontrée.",
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center
